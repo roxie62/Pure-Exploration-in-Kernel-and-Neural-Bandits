@@ -54,12 +54,12 @@ mnist.pkl contains the raw data of the MNIST dataset.
 
 ## Results
 
-Our model achieves the following performance on [Mnist Dataset](http://yann.lecun.com/exdb/mnist/) and [Yahoo Dataset](https://webscope.sandbox.yahoo.com/?guccounter=1)
+Our model achieves the following performance on [Mnist Dataset](http://yann.lecun.com/exdb/mnist/) and [Yahoo Dataset](https://webscope.sandbox.yahoo.com/?guccounter=1  style="zoom:50%;" />)
 
 ##### Sample complexity
-![Image of MNIST](https://github.com/roxie62/Pure-Exploration-in-Kernel-and-Neural-Bandits/blob/master/plots/bar_plot_ready_mnist.png)
+<img src="https://github.com/roxie62/Pure-Exploration-in-Kernel-and-Neural-Bandits/blob/master/plots/bar_plot_ready_mnist.png" alt="drawing" width="200"/>
 
-![Image of Yahoo](https://github.com/roxie62/Pure-Exploration-in-Kernel-and-Neural-Bandits/blob/master/plots/bar_plot_ready_yahoo.png)
+<img src="https://github.com/roxie62/Pure-Exploration-in-Kernel-and-Neural-Bandits/blob/master/plots/bar_plot_ready_yahoo.png" alt="drawing" width="200"/>
 
 ##### Success rate
 
