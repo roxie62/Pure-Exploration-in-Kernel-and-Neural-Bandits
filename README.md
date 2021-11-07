@@ -59,6 +59,7 @@ Our model achieves the following performance on [Mnist Dataset](http://yann.lecu
 ##### Sample complexity
 - MNIST dataset:
 <img src="https://github.com/roxie62/Pure-Exploration-in-Kernel-and-Neural-Bandits/blob/master/plots/bar_plot_ready_mnist.png" alt="drawing" width="500"/>
+
 - Yahoo dataset:
 <img src="https://github.com/roxie62/Pure-Exploration-in-Kernel-and-Neural-Bandits/blob/master/plots/bar_plot_ready_yahoo.png" alt="drawing" width="500"/>
 
