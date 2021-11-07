@@ -69,3 +69,19 @@ Our model achieves the following performance on [Mnist Dataset](http://yann.lecu
 | ------------- | ------------------ | ---------------- | ---------------- | ---- | ------------------ |
 | MNIST Dataset | 98%                | 100%             | 100%             | 100% | 100%               |
 | Yahoo Dataset | 100%               | 98%              | 88%              | 90%  | 100%               |
+
+## Acknowledgement
+
+We would like to thank [Sequential Experimental Design for Transductive Linear Bandits](https://proceedings.neurips.cc/paper/2019/file/8ba6c657b03fc7c8dd4dff8e45defcd2-Paper.pdf) for open-source code.
+
+## Citations
+
+Please consider citing our paper in your publications if the project helps your research. BibTeX reference is as follow.
+```citations
+@article{zhu2021pure,
+  title={Pure Exploration in Kernel and Neural Bandits},
+  author={Zhu, Yinglun and Zhou, Dongruo and Jiang, Ruoxi and Gu, Quanquan and Willett, Rebecca and Nowak, Robert},
+  journal={arXiv preprint arXiv:2106.12034},
+  year={2021}
+}
+```
