@@ -17,9 +17,12 @@ To run the model(s) in the paper, run this command:
 ##### Yahoo dataset
 
 To load the data, please run process_yahoo.py first. After running, we will see two generated numpy files: yahoo_features.npy and yahoo_targets.npy.
+
 To reproduce the result in Section 6, use the following command:
+
 method_list = [neural_elim, kernel_elim, linear_elim, rage, action_elim]
-for method in method_list:
+
+For method in method_list:
 
 ```train and evaluate
 python run_yahoo.py method
