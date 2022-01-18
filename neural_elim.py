@@ -66,9 +66,6 @@ class neural_elim(object):
         batch_size = self.X.shape[0]
 
         self.nn = neural_network(self.d, 1, train_epoch, lr, weight_decay, batch_size, self.dropout)
-        do_not_drop_arms = False
-        pulls_to_history = []
-        rewards_to_history = []
         self.signal_break = False
         self.success = 0
         self.active_arms = list(range(len(self.Z)))
