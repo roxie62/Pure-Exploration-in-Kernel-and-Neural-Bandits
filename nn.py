@@ -3,22 +3,6 @@ import torch.nn as nn
 import numpy as np
 import pdb
 
-def generate_x(n, d, epsilon):
-    x1 = np.random.rand(d)
-    x1[2:] = 0
-    x1 = x1 / np.linalg.norm(x1)
-
-    x2 = np.random.rand(d)
-    x2[0] = 0
-    x2[3:] = 0
-    x2 = x2 / np.linalg.norm(x2)
-
-    X = np.stack([x1, x2], axis = 0)
-    idx = np.random.randint(0, 2, n - 2)
-    X_random = X[idx] + np.random.rand(n - 2, d) * epsilon
-    X_random = X_random /  np.linalg.norm(X_random, axis = -1)[:,None]
-    return np.concatenate([X, X_random], axis = 0)
-
 class neural_network():
     def __init__(self, d_in, d_out, train_epoch, lr, weight_decay, batch_size, dropout):
         self.d_in = d_in
@@ -80,7 +64,6 @@ class neural_network():
             grad_list.append(grad)
         grad_array = torch.stack(grad_list, dim = 0)
         grad_array = grad_array / self.approximator_dim
-        # grad_array = grad_array / 128
         print('approximator_dim:', self.approximator_dim, '\n')
         print(grad_array.cpu().data.float().numpy().shape)
         X_r = self.SVD_X(grad_array.cpu().data.float().numpy(), epsilon_d)
