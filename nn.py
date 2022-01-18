@@ -65,9 +65,6 @@ class neural_network():
         epsilon_rr = np.concatenate([epsilon_rr, epsilon_zero])
         rr_filter = rr[np.where(epsilon_rr <=  epsilon_d)]
         d_r = min(rr_filter)
-        # print(epsilon_rr[:2])
-        # print('\n')
-        # print('d_eff is', d_r)
         X_r = (U @ np.diag(sigma))[:, :d_r]
         return X_r
 
