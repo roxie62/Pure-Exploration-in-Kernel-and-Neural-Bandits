@@ -20,7 +20,7 @@ To load the data, please run process_yahoo.py first. After running, we will see 
 
 To reproduce the result in Section 6, use the following command:
 
-method_list = [neural_elim, kernel_elim, linear_elim, rage, action_elim]
+method_list = [neural_elim, kernel_elim, linear_elim]
 
 For method in method_list:
 
