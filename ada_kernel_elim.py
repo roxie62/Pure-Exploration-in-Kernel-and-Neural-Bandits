@@ -76,17 +76,6 @@ def calculate_effective_dimension(X, eps, epsilon_d, theta_norm = 0.5):
     d_r = np.min(rr[filter])
     approximate = True
 
-    if not approximate:
-        # refine search
-        d = d_r
-        if d > 1:
-            rr = np.arange(1, d + 1)
-            X_id_list = []
-            for i_d in range(d):
-                X_id = (U @ np.diag(sigma))[:, :i_d + 1]
-                X_id_list.append(X_id)
-                d_r = binary_search_dr(X_id_list, sigma_rr, rr, epsilon_d, eps)
-
     gamma_tilde_d = sigma_rr[d_r - 1]
     X_r = (U @ np.diag(np.sqrt(sigma)))[:, :d_r]
     return d_r, X_r, gamma_tilde_d
@@ -242,7 +231,6 @@ class ada_kernel_elim(object):
         design = np.ones(self.K)
         design /= design.sum()
 
-        # should we adjust this max_iter?
         max_iter = 5000
 
         for count in range(1, max_iter):

@@ -89,7 +89,6 @@ class neural_elim(object):
             support = np.sum((design > 0).astype(int))
             n_min = 2*self.factor*support
             eps = 1/self.factor
-            # num_samples = max(np.ceil(8*(2**(self.phase_index-1))**2*rho*(1+eps)*np.log(self.K_Z**2/self.delta_t)), n_min).astype(int)
             num_samples = max(np.ceil( (2**(2*self.phase_index)) *rho*(1+eps)*np.log(self.K_Z**2/self.delta_t)), n_min).astype(int)
             if self.N + num_samples >= 1e8:
                 self.signal_break = True

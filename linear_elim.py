@@ -60,24 +60,6 @@ def test_effective_dimension(X_id_list, sigma_rr, rr, d_r, epsilon_d, eps):
     filter = ((16+8*g_approx_id) * sigma_id) <= epsilon_d
     return filter
 
-def binary_search_dr(X_id_list, sigma_rr, rr, epsilon_d, eps):
-    left, right = rr[0], rr[-1]
-    def binary_search(left, right):
-        if left == right - 1:
-            filter = test_effective_dimension(X_id_list, sigma_rr, rr, left, epsilon_d, eps)
-            if filter:
-                return left
-            else:
-                return right
-        else:
-            mid = int((left + right) / 2)
-            filter = test_effective_dimension(X_id_list, sigma_rr, rr, mid, epsilon_d, eps)
-            if filter:
-                return binary_search(left, mid)
-            else:
-                return binary_search(mid, right)
-    return binary_search(left, right)
-
 
 def calculate_effective_dimension(X, eps, epsilon_d, theta_norm = 0.5):
     # calculate \tilde gamma_d
@@ -95,17 +77,6 @@ def calculate_effective_dimension(X, eps, epsilon_d, theta_norm = 0.5):
     filter = ((16+8*g_approx) * sigma_rr) <= epsilon_d
     d_r = np.min(rr[filter])
     approximate = True
-
-    if not approximate:
-        # refine search
-        d = d_r
-        if d > 1:
-            rr = np.arange(1, d + 1)
-            X_id_list = []
-            for i_d in range(d):
-                X_id = (U @ np.diag(sigma))[:, :i_d + 1]
-                X_id_list.append(X_id)
-                d_r = binary_search_dr(X_id_list, sigma_rr, rr, epsilon_d, eps)
 
     if d_r == len(sigma):
         X_r = X

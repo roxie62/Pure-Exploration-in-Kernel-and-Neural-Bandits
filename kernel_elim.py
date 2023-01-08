@@ -59,28 +59,6 @@ def test_effective_dimension(X_id_list, sigma_rr, rr, d_r, epsilon_d, eps):
     # print(filter)
     return filter
 
-def binary_search_dr(X_id_list, sigma_rr, rr, epsilon_d, eps):
-    left, right = rr[0], rr[-1]
-    # print('left and right point')
-    # print(left, right)
-    def binary_search(left, right):
-        if left == right - 1:
-            filter = test_effective_dimension(X_id_list, sigma_rr, rr, left, epsilon_d, eps)
-            if filter:
-                return left
-            else:
-                return right
-        else:
-            mid = int((left + right) / 2)
-            # print('!!!!!!!!test mid point')
-            # print(mid)
-            filter = test_effective_dimension(X_id_list, sigma_rr, rr, mid, epsilon_d, eps)
-            if filter:
-                return binary_search(left, mid)
-            else:
-                return binary_search(mid, right)
-    return binary_search(left, right)
-
 
 def calculate_effective_dimension(X, eps, epsilon_d, theta_norm = 0.5):
     U, sigma, V_t = np.linalg.svd(X, full_matrices=False)
@@ -198,7 +176,6 @@ class kernel_elim(object):
             self.epsilon_k = 2 * self.gamma_tilde_d  + self.gamma_tilde_d * np.sqrt((1+eps) * rho)
             num_samples = max(np.ceil(((2**(-self.phase_index) - self.epsilon_k)** (-2)) *2 * rho*(1+eps)*np.log(self.K_Z**2/self.delta_t)), n_min).astype(int)
             print('num of samples', num_samples, 'tau', rho)
-            # num_samples = max(np.ceil((2**(-(self.phase_index)) - self.epsilon_k)** (-2) *2 * rho*(1+eps)*np.log(2*self.K**2/self.delta_t)), n_min).astype(int)
             allocation = self.rounding(design, num_samples)
             pulls = np.vstack([np.tile(self.X_sample[i], (num, 1)) for i, num in enumerate(allocation) if num > 0])
             # print('shape of pulls:', pulls.shape)
@@ -206,7 +183,6 @@ class kernel_elim(object):
 
             self.A_inv = np.linalg.pinv(pulls.T@pulls)
             self.theta_hat = np.linalg.pinv(pulls.T@pulls)@pulls.T@rewards
-            # print('1111111111111!')
 
 
             if self.N + num_samples >= 1e7:
@@ -251,7 +227,6 @@ class kernel_elim(object):
         design = np.ones(self.K)
         design /= design.sum()
 
-        # should we adjust this max_iter?
         max_iter = 5000
 
         for count in range(1, max_iter):

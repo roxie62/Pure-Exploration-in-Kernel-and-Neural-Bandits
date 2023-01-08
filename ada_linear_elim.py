@@ -60,28 +60,6 @@ def test_effective_dimension(X_id_list, sigma_rr, rr, d_r, epsilon_d, eps):
     # print(filter)
     return filter
 
-def binary_search_dr(X_id_list, sigma_rr, rr, epsilon_d, eps):
-    left, right = rr[0], rr[-1]
-    # print('left and right point')
-    # print(left, right)
-    def binary_search(left, right):
-        if left == right - 1:
-            filter = test_effective_dimension(X_id_list, sigma_rr, rr, left, epsilon_d, eps)
-            if filter:
-                return left
-            else:
-                return right
-        else:
-            mid = int((left + right) / 2)
-            # print('!!!!!!!!test mid point')
-            # print(mid)
-            filter = test_effective_dimension(X_id_list, sigma_rr, rr, mid, epsilon_d, eps)
-            if filter:
-                return binary_search(left, mid)
-            else:
-                return binary_search(mid, right)
-    return binary_search(left, right)
-
 
 def calculate_effective_dimension(X, eps, epsilon_d, theta_norm = 0.5):
     # calculate \tilde gamma_d
@@ -100,17 +78,6 @@ def calculate_effective_dimension(X, eps, epsilon_d, theta_norm = 0.5):
     d_r = np.min(rr[filter])
     approximate = True
     d_r_old = d_r.copy()
-
-    # approximate = False
-    if not approximate:
-        # refine search
-        if d > 1:
-            rr = np.arange(1, d + 1)
-            X_id_list = []
-            for i_d in range(d):
-                X_id = (U @ np.diag(sigma))[:, :i_d + 1]
-                X_id_list.append(X_id)
-                d_r = binary_search_dr(X_id_list, sigma_rr, rr, epsilon_d, eps)
 
     if d_r == len(sigma):
         X_r = X
@@ -258,7 +225,6 @@ class ada_linear_elim(object):
         design = np.ones(self.K)
         design /= design.sum()
 
-        # should we adjust this max_iter?
         max_iter = 5000
 
         for count in range(1, max_iter):
@@ -285,8 +251,8 @@ class ada_linear_elim(object):
             if count % 100 == 0:
                 logging.debug('design status %s, %s, %s, %s' % (self.seed, count, relative, np.max(rho)))
 
-            # if relative < 0.01:
-            if relative < 0.001:
+            if relative < 0.01:
+            # if relative < 0.001:
                  break
 
         idx_fix = np.where(design < 1e-5)[0]
