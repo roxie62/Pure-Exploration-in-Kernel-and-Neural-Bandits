@@ -14,6 +14,8 @@ This paper includes results on two sythentic datasets and two real datasets.
 
 To run the model(s) in the paper, run this command:
 
+bash run.sh
+
 ##### MNIST dataset
 
 mnist.pkl contains the raw data of the MNIST dataset.
