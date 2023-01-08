@@ -14,32 +14,22 @@ This paper includes results on two sythentic datasets and two real datasets.
 
 To run the model(s) in the paper, run this command:
 
-##### Yahoo dataset
+##### MNIST dataset
 
-To load the data, please run process_yahoo.py first. After running, we will see two generated numpy files: yahoo_features.npy and yahoo_targets.npy.
-
-To reproduce the result in Section 6, use the following command:
+mnist.pkl contains the raw data of the MNIST dataset.
 
 method_list = [neural_elim, kernel_elim, linear_elim]
 
 For method in method_list:
 
 ```train and evaluate
-python run_yahoo.py method
+ python run_minst.py method seed
 ```
 
 For example, to run Alg.2 NeuralEmbedding, we use:
 
 ```train and evaluate
-python run_yahoo.py neural_elim
-```
-
-##### MNIST dataset
-
-mnist.pkl contains the raw data of the MNIST dataset.
-
-```train and evaluate
-- python run_minst.py method
+python run_mnist.py neural_elim 43
 ```
 
 ##### Linear dataset
@@ -48,11 +38,6 @@ mnist.pkl contains the raw data of the MNIST dataset.
 - python run_linear_data.py method
 ```
 
-##### Nonlinear dataset
-
-```train and evaluate
-- python run_nonlinear_data.py method
-```
 
 
 ## Results
